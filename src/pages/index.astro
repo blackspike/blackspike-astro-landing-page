@@ -8,7 +8,6 @@ import FaqSection from "../components/FaqSection.astro"
 import ServicesCarousel from "../components/ServicesCarousel.astro"
 import HeroSection from "../components/HeroSection.astro"
 import NewsletterSection from "../components/NewsletterSection.astro"
-import PricingSection from "../components/PricingSection.astro"
 import QuoteSection from "../components/QuoteSection.astro"
 import TestimonialsSection from "../components/TestimonialsSection.astro"
 
@@ -17,7 +16,6 @@ import clients from "../data/clients.json"
 import faq from "../data/faq.json"
 import services from "../data/services.json"
 import home from "../data/home.json"
-import pricing from "../data/pricing.json"
 import global_settings from "../data/global_settings.json"
 import newsletter from "../data/newsletter.json"
 import testimonials from "../data/testimonials.json"
@@ -57,11 +55,6 @@ import testimonials from "../data/testimonials.json"
   <TestimonialsSection
     testimonials={ testimonials }
     title={ home.testimonials_title }
-  />
-
-  <PricingSection
-    pricing={ pricing }
-    title={ home.pricing_title }
   />
 
   <FaqSection

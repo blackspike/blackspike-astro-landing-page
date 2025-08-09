@@ -1,22 +1,18 @@
 [
   {
-    "question": "How secure is my design data?",
-    "answer": "We use industry-standard encryption and secure storage practices to protect your creative assets. All files are encrypted with AES-256, and our servers are regularly monitored and updated to prevent vulnerabilities."
+    "question": "What is the Fab City Global Initiative?",
+    "answer": "The Fab City Global Initiative is a collective of civic leaders, makers, urbanists, and innovators dedicated to transforming urban industrial paradigms for a sustainable future."
   },
   {
-    "question": "Is there a free trial for design services?",
-    "answer": "Yes, we offer a 14-day free trial for our design platform with access to core features for logo design, 3D modelling, or website prototyping—no credit card required."
+    "question": "What is the goal of the Fab City Global Initiative?",
+    "answer": "The goal is to challenge cities to produce (almost) everything they consume locally by 2054, while sharing knowledge globally."
   },
   {
-    "question": "Can I integrate your tools with other platforms?",
-    "answer": "Absolutely. Our design tools integrate with popular platforms like Figma, Adobe Creative Cloud, Sketch, Blender, and CMS systems like WordPress and Webflow."
+    "question": "How does the Fab City Global Initiative work?",
+    "answer": "It operates on multiple scales, using systems thinking to transform production from the domestic level to the global stage, and promoting open collaboration between stakeholders."
   },
   {
-    "question": "What kind of support do you provide for design projects?",
-    "answer": "We provide 24/7 support via chat and email, along with a detailed help center full of tutorials, design best practices, and walkthroughs for each service."
-  },
-  {
-    "question": "Do you offer offline or on-premise design tools?",
-    "answer": "Our platform is fully cloud-based for convenience and collaboration. However, you can export your designs for offline use in standard formats like SVG, OBJ, and HTML/CSS."
+    "question": "Who is involved in the Fab City Global Initiative?",
+    "answer": "The network spans over 52 cities, regions, and countries worldwide, and includes a collective of innovative leaders in academia, business, and policy."
   }
 ]
