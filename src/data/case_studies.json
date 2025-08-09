@@ -1,32 +1,32 @@
 [
   {
-    "title": "Powering Growth.<br>Simplifying Success.",
-    "sector": "Web design",
-    "content": "<strong>Our custom web design solution helped Biotechlet Ltd elevate its digital presence with a clean, modern interface and intuitive user experience. </strong> <br><br>The redesigned site streamlined user journeys, improved accessibility, and strengthened brand credibility.",
-    "case_study_link": "https://www.spike.news",
-    "cta": "Visit spike.news",
+    "title": "PENCE",
+    "sector": "Climate Action",
+    "content": "Engaging Citizens for Climate Action and Sustainable Solutions.",
+    "case_study_link": "https://fab.city/projects/https-www-creativesforclimate-co-pence/",
+    "cta": "Read more",
     "image": "/content-images/spike.news.avif",
-    "image_alt": "iPad showing spike.news website",
+    "image_alt": "PENCE Project",
     "bg": "bg-gradient-to-r from-indigo-500 to-purple-600"
   },
   {
-    "title": "Accelerating Innovation.<br>Empowering Results.",
-    "sector": "Development",
-    "content": "Our dynamic design and build simplified productivity, delivering automated solutions, seamless collaboration, and data-driven insights",
-    "case_study_link": "https://pixelate.pictures",
-    "cta": "Visit pixelate.pictures",
+    "title": "GreenInCities",
+    "sector": "Urban Regeneration",
+    "content": "Advanced technologies and methods to enhance co-creation process and maximize urban regeneration impacts.",
+    "case_study_link": "https://fab.city/projects/greenincities/",
+    "cta": "Read more",
     "image": "/content-images/pixelate.pictures.avif",
-    "image_alt": "iPad showing pixelated wave painting",
+    "image_alt": "GreenInCities Project",
     "bg": "bg-gradient-to-r from-fuchsia-500 to-cyan-500"
   },
   {
-    "title": "Enhance productivity,<br>boost efficiency.",
-    "sector": "3D Design",
-    "content": "Create, collaborate, and render — all in one streamlined workflow. Teams are connected and producing stunning visuals in minutes.",
-    "case_study_link": "https://www.brighton.dog",
-    "cta": "Visit brighton.dog",
+    "title": "Make-a-Thek",
+    "sector": "Sustainable Fashion",
+    "content": "Empowering communities through modular makerspaces for sustainable fashion and crafts in public libraries.",
+    "case_study_link": "https://fab.city/projects/make-a-thek/",
+    "cta": "Read more",
     "image": "/content-images/brighton.dog.avif",
-    "image_alt": "iPad showing the web page of brighton.dog",
+    "image_alt": "Make-a-Thek Project",
     "bg": "bg-gradient-to-r from-pink-500 to-yellow-500"
   }
 ]

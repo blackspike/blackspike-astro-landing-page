@@ -24,17 +24,19 @@ const { newsletter } = Astro.props
       <div class="bs-body-text flex-grow" set:html={ newsletter.content } />
 
       <!-- Form -->
-      <form class="flex gap-4 flex-col" action="">
+      <form class="flex gap-4 flex-col" action="https://city.us12.list-manage.com/subscribe/post?u=9fda6809b952c81883e74c723&id=0dbf33f1d5" method="post" target="_blank">
 
         <label class="sr-only" for="nl-name">Name</label>
         <input
           id="nl-name"
+          name="NAME"
           class="border-2 rounded-lg text-center bg-bs-surface-0 border-bs-surface-3 form-input px-4 py-3"
           placeholder="Your name">
 
         <label class="sr-only" for="nl-email">Email</label>
         <input
           id="nl-email"
+          name="EMAIL"
           type="email"
           class="border-2 rounded-lg text-center bg-bs-surface-0 border-bs-surface-3 form-input px-4 py-3"
           placeholder="Your email">

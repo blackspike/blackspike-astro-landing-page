@@ -1,57 +1,59 @@
 {
-  "title": "blackspike astro landing page",
-  "description": "A free Astro landing theme made with Tailwind",
+  "title": "Fab City Global Initiative",
+  "description": "Until cities produce (almost) everything they consume.",
   "social_image": "/1200x630.jpg",
-  "base_url": "https://astro-theme.blackspike.com",
-  "demo": {
-    "title": "Need design?",
-    "content": "<strong>Get a guided tour through our services</strong>, and find out how you and your team can change the way you work, forever.",
-    "cta": "Book a call"
-  },
+  "base_url": "http://fab.city",
   "theme_color": "#18181b",
   "nav": [
     {
-      "title": "Services",
-      "link": "/#services"
+      "title": "Network",
+      "link": "/#network"
     },
     {
-      "title": "Case studies",
-      "link": "/#case-studies"
+      "title": "Programs",
+      "link": "/#programs"
     },
     {
-      "title": "Pricing",
-      "link": "/#pricing"
+      "title": "Projects",
+      "link": "/#projects"
     },
     {
-      "title": "FAQ",
-      "link": "/#faq"
+      "title": "Events",
+      "link": "/#events"
     },
     {
-      "title": "Newsletter",
-      "link": "/#newsletter"
+      "title": "Resources",
+      "link": "/#resources"
+    },
+    {
+      "title": "News",
+      "link": "/#news"
+    },
+    {
+      "title": "About",
+      "link": "/#about"
     }
   ],
-
   "social_links": [
     {
       "title": "Twitter / X",
-      "link": "https://x.com/blackspikeltd/"
+      "link": "https://x.com/fabcityglobal"
     },
     {
-      "title": "Mastodon",
-      "link": "https://mastodon.cloud/@blackspike"
+      "title": "Facebook",
+      "link": "https://www.facebook.com/fabcityglobal/"
     },
     {
-      "title": "GitHub",
-      "link": "https://github.com/blackspike/"
+      "title": "Instagram",
+      "link": "https://www.instagram.com/fabcityglobal/"
     },
     {
       "title": "LinkedIn",
-      "link": "https://www.linkedin.com/company/blackspike"
+      "link": "https://www.linkedin.com/company/fab-city/"
     },
     {
-      "title": "Bluesky",
-      "link": "https://bsky.app/profile/blackspike.com/"
+      "title": "Flickr",
+      "link": "https://www.flickr.com/photos/fabcityglobal/"
     }
   ]
 }

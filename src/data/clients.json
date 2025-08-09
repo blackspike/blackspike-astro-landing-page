@@ -1,52 +1,17 @@
 [
   {
-    "title": "Clamaane",
+    "title": "Fab Foundation",
     "image": "/content-images/logo-01.svg",
-    "link": "https://www.blackspike.com/"
+    "link": "https://fabfoundation.org/"
   },
   {
-    "title": "Komplex",
+    "title": "IAAC",
     "image": "/content-images/logo-02.svg",
-    "link": "https://www.blackspike.com/"
+    "link": "https://iaac.net/"
   },
   {
-    "title": "Splashed",
+    "title": "The Center for Bits and Atoms",
     "image": "/content-images/logo-03.svg",
-    "link": "https://www.blackspike.com/"
-  },
-  {
-    "title": "HydroLab",
-    "image": "/content-images/logo-04.svg",
-    "link": "https://www.blackspike.com/"
-  },
-  {
-    "title": "Aromaf",
-    "image": "/content-images/logo-05.svg",
-    "link": "https://www.blackspike.com/"
-  },
-  {
-    "title": "Mediora",
-    "image": "/content-images/logo-06.svg",
-    "link": "https://www.blackspike.com/"
-  },
-  {
-    "title": "wellboth",
-    "image": "/content-images/logo-07.svg",
-    "link": "https://www.blackspike.com/"
-  },
-  {
-    "title": "humbbble",
-    "image": "/content-images/logo-08.svg",
-    "link": "https://www.blackspike.com/"
-  },
-  {
-    "title": "Interia",
-    "image": "/content-images/logo-09.svg",
-    "link": "https://www.blackspike.com/"
-  },
-  {
-    "title": "Anorch",
-    "image": "/content-images/logo-10.svg",
-    "link": "https://www.blackspike.com/"
+    "link": "https://cba.mit.edu/"
   }
 ]

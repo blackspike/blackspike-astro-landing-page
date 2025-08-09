@@ -1,14 +1,14 @@
 {
-  "hero_title": "blackspike astro landing page",
-  "hero_content": "<p><strong>A free Astro landing theme made with Tailwind</strong> to help kick start your Astro website.</p><p>Uses modern CSS and HTML features for added zip, plus a slick swiper carousel. All in Astro JSX.</p>",
+  "hero_title": "Fab City Global Initiative",
+  "hero_content": "<p>The <strong>Fab City Global Initiative</strong> brings together <strong>cities, regions, and communities</strong> working to build more <strong>resilient, regenerative urban futures</strong>. From <strong>local manufacturing</strong> to <strong>bioregional planning</strong>, we are rethinking how cities <strong>produce, share, and govern</strong>.</p>",
   "services_title": "Our services",
   "clients_title": "Trusted by some great companies",
   "testimonials_title": "Clients ♥ us",
   "case_studies_title": "Case studies",
   "pricing_title": "We do design retainers",
-  "quote_content": "This <strong>design agency</strong> is a <strong>game changer</strong>. Its <strong>creative vision</strong>, <strong>user-focused approach</strong>, and <strong>seamless collaboration</strong> have <strong>transformed</strong> the way we <strong>build our brand</strong>. It’s <strong>not just an agency</strong> — it’s a <strong>powerful partner</strong> that <strong>delivers real results</strong>.",
-  "quote_cite": "Sean Higgins",
-  "quote_role": "CTO, Interia",
+  "quote_content": "In 2014, Barcelona’s mayor initiated a global countdown, challenging cities to produce (almost) everything they consume locally by 2054, while sharing knowledge globally.",
+  "quote_cite": "Fab City Global Initiative",
+  "quote_role": "",
   "quote_image": "/content-images/quote-man.avif",
   "faq_title": "Frequently Asked Questions"
 }
