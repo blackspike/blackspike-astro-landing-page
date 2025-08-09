@@ -18,10 +18,7 @@ const { settings, title, content } = Astro.props
     <!-- Content -->
     <div class="bs-body-text xl:text-xl flex flex-col gap-4 [&_p]:last:text-bs-foreground-dark" set:html={ content } />
 
-    <!-- CTA -->
-    <button type="button" class="bs-btn self-start bs-mt-sm" onclick="demo.showModal()">
-      { settings.demo.cta }
-    </button>
+
 
   </div>
 
