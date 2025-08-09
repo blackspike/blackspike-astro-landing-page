@@ -1,0 +1,29 @@
+---
+const { title, resources } = Astro.props
+---
+
+<section class="bs-container bs-mt-lg grid" id="resources">
+
+  <!-- Title -->
+  { title && <h2 class="bs-h2 text-center" set:html={ title } />}
+
+  <!-- Resources -->
+  <div class="bs-mt-md grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-content-center gap-4">
+
+    <!-- Resource link -->
+     {
+      resources.map( item =>
+
+        <a class="group py-10 px-5 rounded-xl flex place-content-center bg-bs-surface-2/70 hover:bg-bs-surface-2 transition-colors duration-300" href={ item.link } target="_blank" rel="noopener noreferrer">
+
+          <h3 class="text-bs-foreground-light bs-h3">{ item.title }</h3>
+
+        </a>
+
+      )
+
+    }
+
+  </div>
+
+</section>

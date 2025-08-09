@@ -28,5 +28,25 @@
     "image": "https://fab.city/wp-content/uploads/2025/03/make-a-thek.jpg",
     "image_alt": "Make-a-Thek Project",
     "bg": "bg-gradient-to-r from-pink-500 to-yellow-500"
+  },
+  {
+    "title": "CENTRINNO",
+    "sector": "Industrial Revolution",
+    "content": "A new industrial revolution that puts citizens at the core of a sustainable transformation.",
+    "case_study_link": "https://fab.city/projects/centrinno-eu-horizon-2020/",
+    "cta": "Read more",
+    "image": "https://fab.city/wp-content/uploads/2022/10/Centrinno_hackaton35-677x1024.jpg",
+    "image_alt": "CENTRINNO Project",
+    "bg": "bg-gradient-to-r from-green-500 to-blue-500"
+  },
+  {
+    "title": "Distributed Design Platform",
+    "sector": "Design Innovation",
+    "content": "A framework for designers, makers, and creatives to innovate the design field.",
+    "case_study_link": "https://fab.city/projects/distributed-design-platform/",
+    "cta": "Read more",
+    "image": "https://fab.city/wp-content/uploads/2022/10/0_-gSaYKbhdGdQLm-y-1090x728-1-1024x684.jpeg",
+    "image_alt": "Distributed Design Platform Project",
+    "bg": "bg-gradient-to-r from-red-500 to-orange-500"
   }
 ]

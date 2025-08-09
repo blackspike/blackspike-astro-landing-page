@@ -9,7 +9,6 @@ import "../assets/css/buttons.css"
 import { Font } from 'astro:assets';
 
 import Image from "astro/components/Image.astro"
-import bg_image from "../assets/theme-images/hero-image.jpg"
 
 import global_settings from "../data/global_settings.json"
 
@@ -53,7 +52,7 @@ const { title, description } = Astro.props
     <a class="fixed -top-20 focus-visible:top-0 p-3 bg-black/90 transition-all duration-300" href="#main">Skip to content</a>
 
     <!-- bg image -->
-    <Image src={ bg_image } alt="" format="avif" height={1080} width={1920} class="absolute min-h-svh object-cover inset-0 bottom-auto -z-1 w-full h-auto opacity-20 mask-b-from-50%" loading="eager" />
+    <Image src="https://fab.city/wp-content/uploads/2025/06/FAB_CITY_DAY-376.jpg" alt="Fab City Summit" format="avif" height={1080} width={1920} class="absolute min-h-svh object-cover inset-0 bottom-auto -z-1 w-full h-auto opacity-20 mask-b-from-50%" loading="eager" />
 
     <!-- Header -->
     <HeaderMain settings={ global_settings } />

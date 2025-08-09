@@ -6,7 +6,7 @@ const { title, caseStudies } = Astro.props
 
 ---
 
-<section class="bs-container bs-mt-lg" id="case-studies">
+<section class="bs-container bs-mt-lg" id="projects">
 
   <!-- Header -->
   { title && <h2 class="bs-h2 text-center md:text-left">{ title }</h2> }
@@ -21,8 +21,9 @@ const { title, caseStudies } = Astro.props
   <!-- Case studies -->
   <div class="mt-8 grid lg:grid-cols-2 gap-8">
 
-    <CardCaseStudy caseStudy={ caseStudies[1] } />
-    <CardCaseStudy caseStudy={ caseStudies[2] } />
+    {caseStudies.slice(1).map(caseStudy => (
+      <CardCaseStudy caseStudy={caseStudy} />
+    ))}
 
   </div>
 

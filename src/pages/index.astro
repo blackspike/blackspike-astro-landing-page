@@ -10,6 +10,7 @@ import HeroSection from "../components/HeroSection.astro"
 import NewsletterSection from "../components/NewsletterSection.astro"
 import QuoteSection from "../components/QuoteSection.astro"
 import TestimonialsSection from "../components/TestimonialsSection.astro"
+import ResourcesSection from "../components/ResourcesSection.astro"
 
 import caseStudies from "../data/case_studies.json"
 import clients from "../data/clients.json"
@@ -19,6 +20,7 @@ import home from "../data/home.json"
 import global_settings from "../data/global_settings.json"
 import newsletter from "../data/newsletter.json"
 import testimonials from "../data/testimonials.json"
+import resources from "../data/resources.json"
 
 ---
 
@@ -60,6 +62,11 @@ import testimonials from "../data/testimonials.json"
   <FaqSection
     faq={ faq }
     title={ home.faq_title }
+  />
+
+  <ResourcesSection
+    resources={ resources }
+    title={ home.resources_title }
   />
 
   <NewsletterSection newsletter={newsletter} />
