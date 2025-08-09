@@ -13,7 +13,6 @@ import bg_image from "../assets/theme-images/hero-image.jpg"
 
 import global_settings from "../data/global_settings.json"
 
-import DialogModal from "../components/DialogModal.astro"
 import FooterMain from "../components/FooterMain.astro"
 import HeaderMain from "../components/HeaderMain.astro"
 
@@ -66,9 +65,6 @@ const { title, description } = Astro.props
 
     <!-- Footer -->
     <FooterMain settings={ global_settings } />
-
-    <!-- Demo dialog modal -->
-    <DialogModal id="demo" content={ global_settings.demo }>
 
   </body>
 </html>
