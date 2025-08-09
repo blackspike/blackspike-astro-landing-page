@@ -3,9 +3,9 @@
     "title": "PENCE",
     "sector": "Climate Action",
     "content": "Engaging Citizens for Climate Action and Sustainable Solutions.",
-    "case_study_link": "https://fab.city/projects/https-www-creativesforclimate-co-pence/",
+    "case_study_link": "https://fab.city/projects/pence/",
     "cta": "Read more",
-    "image": "/content-images/spike.news.avif",
+    "image": "https://fab.city/wp-content/uploads/2024/10/Event-5.jpg",
     "image_alt": "PENCE Project",
     "bg": "bg-gradient-to-r from-indigo-500 to-purple-600"
   },
@@ -15,7 +15,7 @@
     "content": "Advanced technologies and methods to enhance co-creation process and maximize urban regeneration impacts.",
     "case_study_link": "https://fab.city/projects/greenincities/",
     "cta": "Read more",
-    "image": "/content-images/pixelate.pictures.avif",
+    "image": "https://fab.city/wp-content/uploads/2024/05/GIC.jpg",
     "image_alt": "GreenInCities Project",
     "bg": "bg-gradient-to-r from-fuchsia-500 to-cyan-500"
   },
@@ -25,7 +25,7 @@
     "content": "Empowering communities through modular makerspaces for sustainable fashion and crafts in public libraries.",
     "case_study_link": "https://fab.city/projects/make-a-thek/",
     "cta": "Read more",
-    "image": "/content-images/brighton.dog.avif",
+    "image": "https://fab.city/wp-content/uploads/2025/03/make-a-thek.jpg",
     "image_alt": "Make-a-Thek Project",
     "bg": "bg-gradient-to-r from-pink-500 to-yellow-500"
   }

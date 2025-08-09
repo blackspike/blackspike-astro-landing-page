@@ -1,6 +1,19 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+@custom-variant light (&:where(.light, .light *));
+
 @theme {
+
+  .light {
+    --color-bs-surface-0: #ffffff;
+    --color-bs-surface-1: #f9fafb;
+    --color-bs-surface-2: rgba(0, 0, 0, 0.03);
+    --color-bs-surface-3: #e5e7eb;
+
+    --color-bs-foreground-light: #111827;
+    --color-bs-foreground-dark: #6b7280;
+  }
 
   --font-display: var(--font-inter-display), "ui-sans-serif", "system-ui", "sans-serif";
   --font-body: var(--font-inter), "ui-sans-serif", "system-ui", "sans-serif";

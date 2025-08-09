@@ -3,28 +3,28 @@
     "title": "Fab City Summit",
     "content": "An annual event that brings together the global Fab City Network to share knowledge, collaborate on projects, and advance the Fab City agenda.",
     "cta": "Learn more about the Summit",
-    "image": "/content-images/blackspike-wallpaper-01.avif",
+    "image": "https://fab.city/wp-content/uploads/2025/06/FAB_CITY_DAY-98.jpg",
     "image_alt": "Fab City Summit"
   },
   {
     "title": "Fab City Awards",
     "content": "Recognizing and celebrating the most innovative and impactful projects from the Fab City Network.",
     "cta": "Discover the award winners",
-    "image": "/content-images/blackspike-wallpaper-02.avif",
+    "image": "https://fab.city/wp-content/uploads/2025/06/horta1-1.jpg",
     "image_alt": "Fab City Awards"
   },
   {
     "title": "Fab City Challenge",
     "content": "A global competition that invites teams to develop solutions for local problems using digital fabrication and other technologies.",
     "cta": "Join the Challenge",
-    "image": "/content-images/blackspike-wallpaper-03.avif",
+    "image": "https://fab.city/wp-content/uploads/2023/02/Fab-Island-Challenge-IMAGE-1-1024x768.jpg",
     "image_alt": "Fab City Challenge"
   },
   {
     "title": "Full Stack Bootcamp",
     "content": "An intensive training program that equips participants with the skills to design and manage a Fab City stack.",
     "cta": "Enroll in the Bootcamp",
-    "image": "/content-images/blackspike-wallpaper-04.avif",
+    "image": "https://fab.city/wp-content/uploads/2023/02/CDDD-148-1024x683.jpg",
     "image_alt": "Full Stack Bootcamp"
   }
 ]
