@@ -1,4 +1,5 @@
 ---
+import Arrow from '../assets/theme-images/icon-arrow.svg'
 const { title, resources } = Astro.props
 ---
 
@@ -14,9 +15,10 @@ const { title, resources } = Astro.props
      {
       resources.map( item =>
 
-        <a class="group py-10 px-5 rounded-xl flex place-content-center bg-bs-surface-2/70 hover:bg-bs-surface-2 transition-colors duration-300" href={ item.link } target="_blank" rel="noopener noreferrer">
+        <a class="group py-10 px-5 rounded-xl flex items-center justify-center gap-4 bg-bs-surface-2/70 hover:bg-bs-surface-2 transition-colors duration-300" href={ item.link } target="_blank" rel="noopener noreferrer">
 
           <h3 class="text-bs-foreground-light bs-h3">{ item.title }</h3>
+          <Arrow class="h-6 w-6 text-bs-foreground-dark group-hover:translate-x-2 transition-transform" />
 
         </a>
 
