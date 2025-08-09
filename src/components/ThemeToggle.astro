@@ -11,27 +11,27 @@
   const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
   const themeToggleBtn = document.getElementById('theme-toggle');
 
-  const theme = localStorage.getItem('color-theme') ?? 'light';
-
-  if (theme === 'dark') {
-    document.documentElement.classList.add('dark');
-    document.documentElement.classList.remove('light');
-    themeToggleLightIcon.classList.remove('hidden');
+  // Check for saved theme in localStorage and apply it
+  if (localStorage.getItem('color-theme') === 'dark') {
+      document.documentElement.classList.add('dark');
+      themeToggleLightIcon.classList.remove('hidden');
   } else {
-    document.documentElement.classList.add('light');
-    document.documentElement.classList.remove('dark');
-    themeToggleDarkIcon.classList.remove('hidden');
+      document.documentElement.classList.remove('dark');
+      themeToggleDarkIcon.classList.remove('hidden');
   }
 
   themeToggleBtn.addEventListener('click', function() {
-    const currentTheme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-
-    localStorage.setItem('color-theme', newTheme);
-    document.documentElement.classList.remove(currentTheme);
-    document.documentElement.classList.add(newTheme);
-
+    // toggle icons
     themeToggleDarkIcon.classList.toggle('hidden');
     themeToggleLightIcon.classList.toggle('hidden');
+
+    // if is dark, turn light
+    if (document.documentElement.classList.contains('dark')) {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('color-theme', 'light');
+    } else { // if is light, turn dark
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('color-theme', 'dark');
+    }
   });
 </script>

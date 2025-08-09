@@ -1,30 +1,18 @@
 @import "tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *));
-@custom-variant light (&:where(.light, .light *));
 
 @theme {
-
-  .light {
-    --color-bs-surface-0: #ffffff;
-    --color-bs-surface-1: #f9fafb;
-    --color-bs-surface-2: rgba(0, 0, 0, 0.03);
-    --color-bs-surface-3: #e5e7eb;
-
-    --color-bs-foreground-light: #111827;
-    --color-bs-foreground-dark: #6b7280;
-  }
-
   --font-display: var(--font-inter-display), "ui-sans-serif", "system-ui", "sans-serif";
   --font-body: var(--font-inter), "ui-sans-serif", "system-ui", "sans-serif";
 
-  --color-bs-surface-0: #121212;
-  --color-bs-surface-1: #18181B;
-  --color-bs-surface-2: rgba(255, 255, 255, 0.03);
-  --color-bs-surface-3: #2F2F31;
-
-  --color-bs-foreground-light: #eee;
-  --color-bs-foreground-dark: #9f9f9f;
+  /* Light theme (default) */
+  --color-bs-surface-0: #ffffff;
+  --color-bs-surface-1: #f9fafb;
+  --color-bs-surface-2: rgba(0, 0, 0, 0.03);
+  --color-bs-surface-3: #e5e7eb;
+  --color-bs-foreground-light: #111827;
+  --color-bs-foreground-dark: #6b7280;
 
   --color-current: currentColor;
 
@@ -35,4 +23,13 @@
     1.077, 1.121, 1.149 24.3%, 1.159, 1.163, 1.161, 1.154 29.9%, 1.129 32.8%,
     1.051 39.6%, 1.017 43.1%, 0.991, 0.977 51%, 0.974 53.8%, 0.975 57.1%,
     0.997 69.8%, 1.003 76.9%, 1.004 83.8%, 1);
+}
+
+.dark {
+  --color-bs-surface-0: #121212;
+  --color-bs-surface-1: #18181B;
+  --color-bs-surface-2: rgba(255, 255, 255, 0.03);
+  --color-bs-surface-3: #2F2F31;
+  --color-bs-foreground-light: #eee;
+  --color-bs-foreground-dark: #9f9f9f;
 }
