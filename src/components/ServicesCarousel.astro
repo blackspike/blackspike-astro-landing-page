@@ -1,6 +1,6 @@
 ---
 
-import Arrow from '../assets/theme-images/icon-arrow.svg'
+import Arrow from '../assets/theme-images/icon-arrow.svg?raw'
 
 const { title, services } = Astro.props
 
@@ -20,7 +20,7 @@ const { title, services } = Astro.props
       <button aria-label="Previous slide"
         class="js-fc-btn-prev group bs-btn rounded-full !p-0 flex items-center justify-center h-10 w-10 md:h-12 md:w-12">
 
-        <Arrow class="opacity-60 h-4 w-4 -translate-x-[2px] group-active:translate-y-[1px]" height="16" width="25" />
+        <Fragment set:html={Arrow} class="opacity-60 h-4 w-4 -translate-x-[2px] group-active:translate-y-[1px]" height="16" width="25" />
 
       </button>
 
@@ -29,7 +29,7 @@ const { title, services } = Astro.props
         aria-label="Next slide"
         class="js-fc-btn-next group bs-btn rounded-full !p-0 flex items-center justify-center h-10 w-10 md:h-12 md:w-12 -scale-x-100">
 
-        <Arrow class="opacity-60 h-4 w-4 -translate-x-[2px] group-active:translate-y-[1px]" height="16" width="25" />
+        <Fragment set:html={Arrow} class="opacity-60 h-4 w-4 -translate-x-[2px] group-active:translate-y-[1px]" height="16" width="25" />
 
       </button>
     </nav>
