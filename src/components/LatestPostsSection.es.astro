@@ -1,20 +1,15 @@
 ---
+import { getCollection } from 'astro:content';
 import { getLangFromUrl } from '../i18n/ui';
 import BlogImage from './BlogImage.astro';
-import { getLatestPosts, type SanityPost } from '../lib/sanity';
 
-// Get latest 3 posts from Sanity for Spanish
-const lang = 'es';
-const latestPosts = await getLatestPosts(3, 'es');
-
-// Helper functions
-function getDisplayDate(post: SanityPost): Date {
-  return post.updatedDate ? new Date(post.updatedDate) : new Date(post.publishDate);
-}
-
-function getPostImageUrl(post: SanityPost): string | null {
-  return post.legacyImagePath || null;
-}
+// Get latest 3 posts for the current language
+const lang = getLangFromUrl(Astro.url);
+const allPosts = await getCollection('posts');
+const latestPosts = allPosts
+  .filter(post => post.data.lang === lang)
+  .sort((a, b) => new Date((b.data.updated ?? b.data.date) as Date).getTime() - new Date((a.data.updated ?? a.data.date) as Date).getTime())
+  .slice(0, 3);
 
 // Content based on language
 const content = {
@@ -47,53 +42,49 @@ const currentContent = content[lang as keyof typeof content];
   <!-- Posts Grid -->
   {latestPosts.length > 0 ? (
     <div class="bs-mt-md grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-      {latestPosts.map(post => {
-        const displayDate = getDisplayDate(post);
-        const imageUrl = getPostImageUrl(post);
-        return (
-          <article class="@container group">
-            <div class="relative isolate flex h-full w-full flex-col overflow-hidden rounded-xl bg-bs-surface-0/90 hover:bg-bs-surface-2/70 transition-colors duration-300">
-              {imageUrl && (
-                <div class="aspect-16-9 overflow-hidden">
-                  <a href={`/es/posts/${post.slug.current}/`} class="block w-full h-full">
-                    <BlogImage
-                      src={imageUrl}
-                      alt={post.title}
-                      width={400}
-                      height={225}
-                      class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
-                      loading="lazy"
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    />
-                  </a>
-                </div>
-              )}
-              <div class="p-4 sm:p-6 flex flex-col gap-3 sm:gap-4 h-full">
-                <h3 class="bs-h3 line-clamp-2 flex-grow-0">
-                  <a href={`/es/posts/${post.slug.current}/`} class="hover:text-bs-foreground-light transition-colors">
-                    {post.title}
-                  </a>
-                </h3>
-                <p class="bs-body-text text-bs-foreground-dark line-clamp-3 flex-grow">
-                  {post.description}
-                </p>
-                <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 text-sm text-bs-foreground-dark mt-auto">
-                  <span>{post.author}</span>
-                  <span>•</span>
-                  <time datetime={displayDate.toISOString()}>
-                    {displayDate.toLocaleDateString('es-ES', {
-                      year: 'numeric',
-                      month: 'short',
-                      day: 'numeric'
-                    })}
-                  </time>
-                </div>
+      {latestPosts.map(post => (
+        <article class="@container group">
+          <div class="relative isolate flex h-full w-full flex-col overflow-hidden rounded-xl bg-bs-surface-0/90 hover:bg-bs-surface-2/70 transition-colors duration-300">
+            {post.data.image && (
+              <div class="aspect-16-9 overflow-hidden">
+                <a href={`/${lang === 'es' ? 'es/' : ''}posts/${post.slug}/`} class="block w-full h-full">
+                  <BlogImage 
+                    src={post.data.image} 
+                    alt={post.data.title}
+                    width={400}
+                    height={225}
+                    class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                </a>
+              </div>
+            )}
+            <div class="p-4 sm:p-6 flex flex-col gap-3 sm:gap-4 h-full">
+              <h3 class="bs-h3 line-clamp-2 flex-grow-0">
+                <a href={`/${lang === 'es' ? 'es/' : ''}posts/${post.slug}/`} class="hover:text-bs-foreground-light transition-colors">
+                  {post.data.title}
+                </a>
+              </h3>
+              <p class="bs-body-text text-bs-foreground-dark line-clamp-3 flex-grow">
+                {post.data.description}
+              </p>
+              <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 text-sm text-bs-foreground-dark mt-auto">
+                <span>{post.data.author}</span>
+                <span>•</span>
+                <time datetime={(post.data.updated ?? post.data.date).toISOString()}>
+                  {(post.data.updated ?? post.data.date).toLocaleDateString(lang === 'es' ? 'es-ES' : 'en-US', { 
+                    year: 'numeric', 
+                    month: 'short', 
+                    day: 'numeric' 
+                  })}
+                </time>
               </div>
             </div>
-          </article>
-        );
-      })}
-    </div>
+          </div>
+        </article>
+        ))}
+      </div>
   ) : (
     <!-- No posts message -->
     <div class="text-center bs-mt-md">
@@ -101,9 +92,14 @@ const currentContent = content[lang as keyof typeof content];
         <svg class="w-16 h-16 text-bs-foreground-dark mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
         </svg>
-        <h3 class="bs-h3 mb-2">No hay artículos aún</h3>
+        <h3 class="bs-h3 mb-2">
+          {lang === 'es' ? 'No hay artículos aún' : 'No posts yet'}
+        </h3>
         <p class="bs-body-text text-bs-foreground-dark">
-          ¡Vuelve pronto para ver nuestro primer artículo!
+          {lang === 'es' 
+            ? '¡Vuelve pronto para ver nuestro primer artículo!' 
+            : 'Check back soon for our first post!'
+          }
         </p>
       </div>
     </div>
@@ -111,8 +107,10 @@ const currentContent = content[lang as keyof typeof content];
 
   <!-- View All Posts Button -->
   <div class="text-center bs-mt-md">
-    <a href="/es/posts/" class="bs-btn inline-block">
+    <a href={`/${lang === 'es' ? 'es/' : ''}posts/`} class="bs-btn inline-block">
       {currentContent.viewAll}
     </a>
   </div>
+
 </section>
+

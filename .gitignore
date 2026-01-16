@@ -16,16 +16,9 @@ pnpm-debug.log*
 # environment variables
 .env
 .env.production
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
 
 # macOS-specific files
 .DS_Store
-
-# Sanity Studio
-.sanity/
 
 # jetbrains setting folder
 .idea/

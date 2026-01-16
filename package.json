@@ -7,27 +7,14 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro",
-    "migrate": "node scripts/migrate-to-sanity.js"
+    "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/netlify": "^6.3.0",
     "@astrojs/rss": "^4.0.12",
-    "@portabletext/to-html": "^2.0.17",
-    "@sanity/client": "^6.27.2",
-    "@sanity/image-url": "^1.1.0",
     "@tailwindcss/vite": "^4.1.11",
     "astro": "^5.11.0",
     "sharp": "^0.34.3",
     "swiper": "^11.2.10",
     "tailwindcss": "^4.1.11"
-  },
-  "devDependencies": {
-    "@sanity/cli": "^3.74.1",
-    "sanity": "^3.74.1",
-    "@sanity/vision": "^3.74.1",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "styled-components": "^6.1.15"
   }
 }

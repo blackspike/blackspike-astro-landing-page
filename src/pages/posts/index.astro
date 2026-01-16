@@ -1,67 +1,64 @@
 ---
-// SSR mode - fetch content from Sanity CMS at runtime
-export const prerender = false;
-
 import Layout from "../../layouts/Layout.astro";
+import { getCollection } from 'astro:content';
 import { getLangFromUrl } from '../../i18n/ui';
 import BlogSearch from "../../components/BlogSearch.astro";
 import BlogImage from '../../components/BlogImage.astro';
-import { getPostsPaginated, getPostCount, type SanityPost } from '../../lib/sanity';
 
-// Get all posts from Sanity
-const { posts, total } = await getPostsPaginated('en', 1, 9);
+// Get all posts and sort by date
+const allPosts = await getCollection('posts');
+const posts = allPosts
+  .filter(post => post.data.lang === 'en')
+  .sort((a, b) => new Date((b.data.updated ?? b.data.date) as Date).getTime() - new Date((a.data.updated ?? a.data.date) as Date).getTime());
 
-// Calculate pagination
+// First page content (9 posts)
 const postsPerPage = 9;
 const currentPage = 1;
-const totalPages = Math.ceil(total / postsPerPage);
+const totalPages = Math.ceil(posts.length / postsPerPage);
+const startIndex = 0;
+const endIndex = postsPerPage;
+const currentPosts = posts.slice(startIndex, endIndex);
 
-// Helper to get display date
-function getDisplayDate(post: SanityPost): Date {
-  return post.updatedDate ? new Date(post.updatedDate) : new Date(post.publishDate);
-}
-
-// Helper to get image URL
-function getPostImageUrl(post: SanityPost): string | null {
-  return post.legacyImagePath || null;
-}
+// Get unique tags for filtering
+const allTags = [...new Set(posts.flatMap(post => post.data.tags))];
 
 const lang = getLangFromUrl(Astro.url);
 ---
 
 <Layout>
-
+  
   <!-- Structured Data for Blog Archive -->
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "Blog",
-    "name": "HAL149 Blog",
-    "description": "Latest insights, news, and updates from HAL149",
+    "name": "Frontier Agency Blog",
+    "description": "Latest insights, news, and updates from Frontier Agency",
     "url": "/posts/",
     "publisher": {
       "@type": "Organization",
       "name": "HAL149",
       "url": "/"
     },
-    "blogPost": posts.map(post => ({
+    "blogPost": currentPosts.map(post => ({
       "@type": "BlogPosting",
-      "headline": post.title,
-      "description": post.description,
+      "headline": post.data.title,
+      "description": post.data.description,
       "author": {
         "@type": "Person",
-        "name": post.author
+        "name": post.data.author
       },
-      "datePublished": new Date(post.publishDate).toISOString(),
-      "dateModified": getDisplayDate(post).toISOString(),
-      "url": `/posts/${post.slug.current}/`,
-      "image": getPostImageUrl(post) || undefined,
-      "publisher": {
-        "@type": "Organization",
-        "name": "HAL149"
-      }
+      "datePublished": post.data.date.toISOString(),
+      "dateModified": (post.data.updated ?? post.data.date).toISOString(),
+      "url": `/posts/${post.slug}/`,
+      "image": post.data.image ? post.data.image : undefined,
+              "publisher": {
+          "@type": "Organization",
+          "name": "HAL149"
+        }
     }))
   })} />
   <div class="bs-container py-16">
+    <!-- Prefetch moved to <head> via slot below -->
     <!-- Header -->
     <div class="text-center mb-16">
       <h1 class="bs-h1 mb-6">Blog Posts</h1>
@@ -75,75 +72,73 @@ const lang = getLangFromUrl(Astro.url);
 
     <!-- Posts Grid -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-16" data-posts-grid>
-      {posts.map(post => {
-        const displayDate = getDisplayDate(post);
-        const imageUrl = getPostImageUrl(post);
-        return (
-          <article class="@container group" data-post-id={post.slug.current}>
-            <div class="relative isolate flex h-full w-full flex-col overflow-hidden rounded-xl bg-bs-surface-0/90 hover:bg-bs-surface-2/70 transition-colors duration-300">
-              {imageUrl && (
-                <div class="aspect-16-9 overflow-hidden">
-                  <a href={`/posts/${post.slug.current}/`} class="block w-full h-full">
-                    <BlogImage
-                      src={imageUrl}
-                      alt={post.title}
-                      width={400}
-                      height={225}
-                      class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
-                      loading="lazy"
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    />
-                  </a>
-                </div>
-              )}
-              <div class="p-4 sm:p-6 flex flex-col gap-3 sm:gap-4 h-full">
-                <h2 class="bs-h3 line-clamp-2 flex-grow-0">
-                  <a href={`/posts/${post.slug.current}/`} class="hover:text-bs-foreground-light transition-colors">
-                    {post.title}
-                  </a>
-                </h2>
-                <p class="bs-body-text text-bs-foreground-dark line-clamp-3 flex-grow">
-                  {post.description}
-                </p>
-                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between text-sm text-bs-foreground-dark mt-auto gap-1 sm:gap-0">
-                  <span>{post.author}</span>
-                  <time datetime={displayDate.toISOString()}>
-                    {displayDate.toLocaleDateString('en-US', {
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric'
-                    })}
-                  </time>
-                </div>
+      {currentPosts.map(post => (
+        <article class="@container group" data-post-id={post.slug}>
+          <div class="relative isolate flex h-full w-full flex-col overflow-hidden rounded-xl bg-bs-surface-0/90 hover:bg-bs-surface-2/70 transition-colors duration-300">
+            {post.data.image && (
+              <div class="aspect-16-9 overflow-hidden">
+                <a href={`/posts/${post.slug}/`} class="block w-full h-full">
+                  <BlogImage 
+                    src={post.data.image} 
+                    alt={post.data.title}
+                    width={400}
+                    height={225}
+                    class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                </a>
+              </div>
+            )}
+            <div class="p-4 sm:p-6 flex flex-col gap-3 sm:gap-4 h-full">
+              <h2 class="bs-h3 line-clamp-2 flex-grow-0">
+                <a href={`/posts/${post.slug}/`} class="hover:text-bs-foreground-light transition-colors">
+                  {post.data.title}
+                </a>
+              </h2>
+              <p class="bs-body-text text-bs-foreground-dark line-clamp-3 flex-grow">
+                {post.data.description}
+              </p>
+              <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between text-sm text-bs-foreground-dark mt-auto gap-1 sm:gap-0">
+                <span>{post.data.author}</span>
+                <time datetime={(post.data.updated ?? post.data.date).toISOString()}>
+                  {(post.data.updated ?? post.data.date).toLocaleDateString('en-US', { 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                  })}
+                </time>
               </div>
             </div>
-          </article>
-        );
-      })}
+          </div>
+        </article>
+      ))}
     </div>
 
     <!-- Pagination -->
     {totalPages > 1 && (
       <div class="flex justify-center items-center gap-2" data-pagination>
-        <a
-          href="/posts/"
-          class="px-4 py-2 rounded transition-colors bg-bs-surface-3 text-bs-foreground-light"
-        >
-          1
-        </a>
         {totalPages > 1 && (
-          <a
-            href="/posts/page/2/"
-            class="px-4 py-2 rounded transition-colors bg-bs-surface-0/90 text-bs-foreground-dark hover:bg-bs-surface-2/70"
-          >
-            2
-          </a>
+          <>
+            <a 
+              href={`/posts/`} 
+              class={`px-4 py-2 rounded transition-colors bg-bs-surface-3 text-bs-foreground-light`}
+            >
+              1
+            </a>
+            <a 
+              href={`/posts/page/2/`} 
+              class={`px-4 py-2 rounded transition-colors bg-bs-surface-0/90 text-bs-foreground-dark hover:bg-bs-surface-2/70`}
+            >
+              2
+            </a>
+          </>
         )}
       </div>
     )}
 
     <!-- No posts message -->
-    {posts.length === 0 && (
+    {currentPosts.length === 0 && (
       <div class="text-center py-16">
         <div class="bg-bs-surface-0/90 rounded-xl p-8 max-w-md mx-auto">
           <h3 class="bs-h3 mb-4">No posts found</h3>
@@ -168,3 +163,10 @@ const lang = getLangFromUrl(Astro.url);
     overflow: hidden;
   }
 </style>
+
+
+<!-- Head slot: prefetch search index without affecting layout flow -->
+<Fragment slot="head">
+  <link rel="prefetch" href="/posts/index.json" as="fetch" type="application/json" crossorigin="anonymous" />
+</Fragment>
+

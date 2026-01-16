@@ -1,80 +1,53 @@
 ---
-// SSR mode - fetch content from Sanity CMS at runtime
-export const prerender = false;
-
 import Layout from "../../../layouts/Layout.astro";
+import { getCollection } from 'astro:content';
 import { getLangFromUrl } from '../../../i18n/ui';
 import BlogImage from '../../../components/BlogImage.astro';
-import { getPostBySlug, portableTextToHtml, getImageUrl, getImageAlt } from '../../../lib/sanity';
 
-// Get the slug from the URL
-const { slug } = Astro.params;
-const lang = getLangFromUrl(Astro.url);
-
-// Fetch the post from Sanity
-const post = await getPostBySlug(slug as string, 'es');
-
-// If post not found, return 404
-if (!post) {
-  return Astro.redirect('/es/404');
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  return posts
+    .filter(post => post.data.lang === 'es')
+    .map(post => ({
+      params: { slug: post.slug },
+      props: { post },
+    }));
 }
 
-// Convert Sanity dates to Date objects for display
-const publishDate = new Date(post.publishDate);
-const displayDate = post.updatedDate ? new Date(post.updatedDate) : publishDate;
+const { post } = Astro.props as { post: any };
+const { Content } = await post.render();
 
-// Convert Portable Text body to HTML
-const bodyHtml = portableTextToHtml(post.body);
-
-// Get image URL (supports both Sanity images and legacy paths)
-const imageUrl = post.legacyImagePath || (post.image ? getImageUrl(post) : null);
-const imageAlt = getImageAlt(post);
-
-// Create a post object compatible with Layout props
-const postData = {
-  slug: post.slug.current,
-  data: {
-    title: post.title,
-    description: post.description,
-    date: publishDate,
-    updated: post.updatedDate ? new Date(post.updatedDate) : undefined,
-    author: post.author,
-    image: imageUrl,
-    lang: post.lang,
-    enSlug: post.enSlug,
-    esSlug: post.esSlug,
-    tags: post.tags,
-  }
-};
+const lang = getLangFromUrl(Astro.url);
+const displayDate: Date = (post.data.updated ?? post.data.date) as Date;
 ---
 
-<Layout
-  title={post.seoTitle || post.title}
-  description={post.seoDescription || post.description}
-  image={imageUrl}
+<Layout 
+  title={post.data.title}
+  description={post.data.description}
+  image={post.data.image}
   type="article"
-  author={post.author}
-  publishedTime={publishDate.toISOString()}
+  author={post.data.author}
+  publishedTime={post.data.date.toISOString()}
   modifiedTime={displayDate.toISOString()}
   section="Blog"
-  tags={post.tags}
-  post={postData}
+  tags={post.data.tags}
+  post={post}
 >
-
+  
   <!-- Structured Data for Blog Post -->
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "headline": post.title,
-    "description": post.description,
+    "headline": post.data.title,
+    "description": post.data.description,
     "author": {
       "@type": "Person",
-      "name": post.author
+      "name": post.data.author
     },
-    "datePublished": publishDate.toISOString(),
+    "datePublished": post.data.date.toISOString(),
     "dateModified": displayDate.toISOString(),
-    "url": `${Astro.url.origin}/es/posts/${post.slug.current}/`,
-    "image": imageUrl ? `${Astro.url.origin}${imageUrl}` : undefined,
+    "url": `${Astro.url.origin}/es/posts/${post.slug}/`,
+    "image": post.data.image ? `${Astro.url.origin}${post.data.image}` : undefined,
     "publisher": {
       "@type": "Organization",
       "name": "HAL149",
@@ -82,7 +55,7 @@ const postData = {
     },
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `${Astro.url.origin}/es/posts/${post.slug.current}/`
+      "@id": `${Astro.url.origin}/es/posts/${post.slug}/`
     },
     "articleSection": "Blog"
   })} />
@@ -103,7 +76,7 @@ const postData = {
           <svg class="w-4 h-4 mx-2" fill="currentColor" viewBox="0 0 20 20">
             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
           </svg>
-          <span class="text-bs-foreground-light font-medium">{post.title}</span>
+          <span class="text-bs-foreground-light font-medium">{post.data.title}</span>
         </li>
       </ol>
     </nav>
@@ -112,7 +85,7 @@ const postData = {
     <header class="mb-12">
       <!-- Title -->
       <h1 class="bs-h1 mb-6 leading-tight">
-        {post.title}
+        {post.data.title}
       </h1>
 
       <!-- Meta -->
@@ -121,28 +94,28 @@ const postData = {
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
           </svg>
-          <span>{post.author}</span>
+          <span>{post.data.author}</span>
         </div>
         <div class="flex items-center gap-2">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 002 2v12a2 2 0 002 2z"></path>
           </svg>
           <time datetime={displayDate.toISOString()}>
-            {displayDate.toLocaleDateString('es-ES', {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric'
+            {displayDate.toLocaleDateString('es-ES', { 
+              year: 'numeric', 
+              month: 'long', 
+              day: 'numeric' 
             })}
           </time>
         </div>
       </div>
 
       <!-- Featured Image -->
-      {imageUrl && (
+      {post.data.image && (
         <div class="mb-8">
-          <BlogImage
-            src={imageUrl}
-            alt={imageAlt}
+          <BlogImage 
+            src={post.data.image} 
+            alt={post.data.title}
             width={800}
             height={450}
             class="w-full h-auto object-contain rounded-lg shadow-lg"
@@ -156,12 +129,14 @@ const postData = {
     </header>
 
     <!-- Content -->
-    <div class="post-content max-w-none mb-16" set:html={bodyHtml} />
+    <div class="post-content max-w-none mb-16">
+      <Content />
+    </div>
     <hr class="my-8" />
     <div class="text-sm text-bs-foreground-dark">
       <span>Publicado originalmente el </span>
-      <time datetime={publishDate.toISOString()}>
-        {publishDate.toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}
+      <time datetime={post.data.date.toISOString()}>
+        {post.data.date.toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}
       </time>
     </div>
   </article>

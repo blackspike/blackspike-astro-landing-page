@@ -1,11 +1,8 @@
 import { defineConfig } from 'astro/config'
 import tailwindcss from '@tailwindcss/vite'
-import netlify from '@astrojs/netlify'
 
 export default defineConfig({
-  // Server mode: SSR by default, use prerender = true for static pages
-  output: 'server',
-  adapter: netlify(),
+  output: 'static',
   site: 'https://hal149.com', // HAL149 domain
   build: {
     // Aggressive CSS bundling to eliminate render-blocking
@@ -39,7 +36,26 @@ export default defineConfig({
       }
     }
   },
-  // Content collections disabled - blog content now served from Sanity CMS
+  content: {
+    collections: {
+      posts: {
+        schema: {
+          type: 'content',
+          fields: {
+            title: { type: 'string', required: true },
+            description: { type: 'string', required: true },
+            date: { type: 'date', required: true },
+            author: { type: 'string', required: true },
+            tags: { type: 'array', of: { type: 'string' }, required: false },
+            image: { type: 'string', required: false },
+            lang: { type: 'string', required: true },
+            enSlug: { type: 'string', required: false },
+            esSlug: { type: 'string', required: false }
+          }
+        }
+      }
+    }
+  },
   experimental: {
     fonts: [{
       provider: "local",

@@ -1,61 +1,30 @@
-# HAL149 Netlify Configuration
-# Hybrid mode: Static marketing pages + SSR blog pages via Netlify Functions
-
 [build]
   publish = "dist"
   command = "npm run build"
 
 [build.environment]
-  NODE_VERSION = "20"
+  NODE_VERSION = "18"
   NPM_FLAGS = "--no-frozen-lockfile"
 
-# Netlify Functions configuration for SSR
-[functions]
-  directory = ".netlify/functions-internal"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
 
 # Form handling
+[[redirects]]
+  from = "/"
+  to = "/thank-you/"
+  status = 302
+  conditions = {Role = ["admin"]}
+
+# Handle form submissions
 [forms]
   [forms.contact]
     name = "Contact Form"
     honeypot = "bot-field"
-
+  
   [forms.newsletter]
     name = "Newsletter Subscription"
-    honeypot = "bot-field"
-
-# Security headers
-[[headers]]
-  for = "/*"
-  [headers.values]
-    X-Frame-Options = "SAMEORIGIN"
-    X-Content-Type-Options = "nosniff"
-    Referrer-Policy = "strict-origin-when-cross-origin"
-    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
-
-# Cache static assets
-[[headers]]
-  for = "/assets/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-[[headers]]
-  for = "/*.css"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-[[headers]]
-  for = "/*.js"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-# Cache images
-[[headers]]
-  for = "/blog-images/*"
-  [headers.values]
-    Cache-Control = "public, max-age=86400, stale-while-revalidate=604800"
-
-# Don't index studio page
-[[headers]]
-  for = "/studio/*"
-  [headers.values]
-    X-Robots-Tag = "noindex"
+    honeypot = "bot-field" 
