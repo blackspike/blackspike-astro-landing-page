@@ -1,51 +1,34 @@
 ---
-import Image from "astro/components/Image.astro"
-import bg_image from "../assets/theme-images/hero-image.jpg"
+import { Image } from 'astro:assets'
+import bg_image from '../assets/theme-images/hero-image.jpg'
 
 const { newsletter } = Astro.props
-
 ---
 
 <aside class="@container bs-container bs-mt-lg text-center" id="newsletter">
-
   <!-- Wrapper -->
   <div class="p-6 md:py-16 relative rounded-xl overflow-hidden flex justify-center isolate w-full h-full">
-
     <!-- BG image -->
-    <Image src={ bg_image } alt="" format="avif" height={1080} width={1920} class="rounded-xl overflow-hidden w-full h-full object-cover object-left absolute inset-0 opacity-50" />
+    <Image src={bg_image} alt="" format="avif" height={1080} width={1920} class="rounded-xl overflow-hidden w-full h-full object-cover object-left absolute inset-0 opacity-50" />
 
     <!-- Content -->
     <div class="z-10 p-6 md:p-10 lg:p-20 rounded-xl md:max-w-lg flex flex-col gap-6 bg-bs-surface-0/95 h-full">
-
       <!-- Title -->
-      <h2 class="bs-h2" set:html={ newsletter.title } />
+      <h2 class="bs-h2" set:html={newsletter.title} />
 
       <!-- Intro -->
-      <div class="bs-body-text flex-grow" set:html={ newsletter.content } />
+      <div class="bs-body-text flex-grow" set:html={newsletter.content} />
 
       <!-- Form -->
       <form class="flex gap-4 flex-col" action="">
-
         <label class="sr-only" for="nl-name">Name</label>
-        <input
-          id="nl-name"
-          class="border-2 rounded-lg text-center bg-bs-surface-0 border-bs-surface-3 form-input px-4 py-3"
-          placeholder="Your name">
+        <input id="nl-name" class="border-2 rounded-lg text-center bg-bs-surface-0 border-bs-surface-3 form-input px-4 py-3" placeholder="Your name" />
 
         <label class="sr-only" for="nl-email">Email</label>
-        <input
-          id="nl-email"
-          type="email"
-          class="border-2 rounded-lg text-center bg-bs-surface-0 border-bs-surface-3 form-input px-4 py-3"
-          placeholder="Your email">
+        <input id="nl-email" type="email" class="border-2 rounded-lg text-center bg-bs-surface-0 border-bs-surface-3 form-input px-4 py-3" placeholder="Your email" />
 
-        <input type="submit" value={ newsletter.cta } class="bs-btn form-input px-4 py-3">
-
+        <input type="submit" value={newsletter.cta} class="bs-btn form-input px-4 py-3" />
       </form>
-
     </div>
-
   </div>
-
 </aside>
-

@@ -1,63 +1,54 @@
 ---
-
 import '../assets/css/global.css'
-import "../assets/css/base.css"
-import "../assets/css/typography.css"
-import "../assets/css/layout.css"
-import "../assets/css/buttons.css"
+import '../assets/css/base.css'
+import '../assets/css/typography.css'
+import '../assets/css/layout.css'
+import '../assets/css/buttons.css'
 
-import { Font } from 'astro:assets';
+import { Font } from 'astro:assets'
 
-import Image from "astro/components/Image.astro"
-import bg_image from "../assets/theme-images/hero-image.jpg"
+import { Image } from 'astro:assets'
+import bg_image from '../assets/theme-images/hero-image.jpg'
 
-import global_settings from "../data/global_settings.json"
+import global_settings from '../data/global_settings.json'
 
-import DialogModal from "../components/DialogModal.astro"
-import FooterMain from "../components/FooterMain.astro"
-import HeaderMain from "../components/HeaderMain.astro"
+import DialogModal from '../components/DialogModal.astro'
+import FooterMain from '../components/FooterMain.astro'
+import HeaderMain from '../components/HeaderMain.astro'
 
 const { title, description } = Astro.props
-
 ---
 
 <html lang="en">
-
   <head>
-
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
 
-    <title>{ title ?? global_settings.title }</title>
+    <title>{title ?? global_settings.title}</title>
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="manifest" href="/manifest.json" />
 
-    <meta name="description" content={ description ?? global_settings.description } />
-    <meta name="theme-color" content={ global_settings.theme_color } />
+    <meta name="description" content={description ?? global_settings.description} />
+    <meta name="theme-color" content={global_settings.theme_color} />
 
-    <meta property="og:title" content={ title ?? global_settings.title } />
-    <meta property="og:description" content={ description ?? global_settings.description } />
-    <meta
-      property="og:image"
-      content={ global_settings.base_url + global_settings.social_image }
-    />
+    <meta property="og:title" content={title ?? global_settings.title} />
+    <meta property="og:description" content={description ?? global_settings.description} />
+    <meta property="og:image" content={global_settings.base_url + global_settings.social_image} />
 
     <Font cssVariable="--font-inter" preload />
     <Font cssVariable="--font-inter-display" preload />
-
   </head>
 
   <body id="top">
-
     <!-- Skip link -->
     <a class="fixed -top-20 focus-visible:top-0 p-3 bg-black/90 transition-all duration-300" href="#main">Skip to content</a>
 
     <!-- bg image -->
-    <Image src={ bg_image } alt="" format="avif" height={1080} width={1920} class="absolute min-h-svh object-cover inset-0 bottom-auto -z-1 w-full h-auto opacity-20 mask-b-from-50%" loading="eager" />
+    <Image src={bg_image} alt="" format="avif" height={1080} width={1920} class="absolute min-h-svh object-cover inset-0 bottom-auto -z-1 w-full h-auto opacity-20 mask-b-from-50%" loading="eager" />
 
     <!-- Header -->
-    <HeaderMain settings={ global_settings } />
+    <HeaderMain settings={global_settings} />
 
     <!-- Main slot -->
     <main id="main">
@@ -65,11 +56,9 @@ const { title, description } = Astro.props
     </main>
 
     <!-- Footer -->
-    <FooterMain settings={ global_settings } />
+    <FooterMain settings={global_settings} />
 
     <!-- Demo dialog modal -->
-    <DialogModal id="demo" content={ global_settings.demo }>
-
+    <DialogModal id="demo" content={global_settings.demo} />
   </body>
 </html>
-
