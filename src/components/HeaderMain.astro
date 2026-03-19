@@ -1,44 +1,32 @@
 ---
-
 import Logo from '../assets/theme-images/logo.svg'
 
 const { settings } = Astro.props
-
 ---
 
 <header class="wrapper bg-loop font-semibold">
-
   <!-- Wrapper -->
   <div class="bs-container py-6 flex justify-between items-center">
-
     <!-- Logo -->
-    <a class="flex xl:min-w-32 group" href="/" aria-label={ settings.title + ' - Home' }>
-
+    <a class="flex xl:min-w-32 group" href="/" aria-label={settings.title + ' - Home'}>
       <Logo class="group-hover:-rotate-180 group-hover:scale-80 transition-transform ease-bs-spring duration-1000" height="48" width="48" />
-
     </a>
 
     <!-- Nav -->
     <nav class="hidden col-span-6 md:flex mx-auto self-stretch lg:gap-2">
-
       <!-- Links -->
-      { settings.nav.map( item =>
-
-        <a class="bs-btn !bg-transparent before:translate-y-full hover:before:translate-y-0" href={item.link}>
-          { item.title }
-        </a>
-
-      )}
-
+      {
+        settings.nav.map((item) => (
+          <a class="bs-btn bg-transparent! before:translate-y-full hover:before:translate-y-0" href={item.link}>
+            {item.title}
+          </a>
+        ))
+      }
     </nav>
 
     <!-- CTA -->
     <button type="button" class="min-w-32 bs-btn" onclick="demo.showModal()">
-
-      { settings.demo.title }
-
+      {settings.demo.title}
     </button>
-
   </div>
-
 </header>

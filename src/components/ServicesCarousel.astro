@@ -1,36 +1,24 @@
 ---
-
 import Arrow from '../assets/theme-images/icon-arrow.svg'
 
 const { title, services } = Astro.props
-
 ---
 
 <section id="services">
-
   <!-- Header -->
   <header class="bs-container flex items-center justify-between">
-
-    { title && <h2 class="bs-h2">{ title }</h2>}
+    {title && <h2 class="bs-h2">{title}</h2>}
 
     <!-- Buttons -->
     <nav class="bs-st-button-wrapper flex justify-center gap-4">
-
       <!-- Prev -->
-      <button aria-label="Previous slide"
-        class="js-fc-btn-prev group bs-btn rounded-full !p-0 flex items-center justify-center h-10 w-10 md:h-12 md:w-12">
-
-        <Arrow class="opacity-60 h-4 w-4 -translate-x-[2px] group-active:translate-y-[1px]" height="16" width="25" />
-
+      <button aria-label="Previous slide" class="js-fc-btn-prev group bs-btn rounded-full p-0! flex items-center justify-center h-10 w-10 md:h-12 md:w-12">
+        <Arrow class="opacity-60 h-4 w-4 -translate-x-[2px] group-active:translate-y-px" height="16" width="25" />
       </button>
 
       <!-- Next -->
-      <button
-        aria-label="Next slide"
-        class="js-fc-btn-next group bs-btn rounded-full !p-0 flex items-center justify-center h-10 w-10 md:h-12 md:w-12 -scale-x-100">
-
-        <Arrow class="opacity-60 h-4 w-4 -translate-x-[2px] group-active:translate-y-[1px]" height="16" width="25" />
-
+      <button aria-label="Next slide" class="js-fc-btn-next group bs-btn rounded-full p-0! flex items-center justify-center h-10 w-10 md:h-12 md:w-12 -scale-x-100">
+        <Arrow class="opacity-60 h-4 w-4 -translate-x-[2px] group-active:translate-y-px" height="16" width="25" />
       </button>
     </nav>
   </header>
@@ -38,105 +26,89 @@ const { title, services } = Astro.props
   <!-- Slides -->
   <div class="js-fc-swiper swiper select-none bs-mt-md">
     <div class="swiper-wrapper">
+      {
+        // Slides (duplicated to fix swiper loop)
+        [...services, ...services].map((item) => (
+          <div class="swiper-slide bg-bs-surface-0 border border-bs-surface-3 rounded-xl overflow-hidden h-auto!">
+            <figure class="flex flex-col gap-6 isolate min-h-[50svh] md:min-h-[40rem] h-full">
+              {/* BG image */}
+              <img src={item.image} alt={item.image_alt} loading="lazy" class="opacity-20 md:opacity-80 rounded-xl grayscale overflow-hidden w-full h-full object-cover object-left absolute inset-0" height="1024" width="768" />
 
-      { services.map( item =>
+              {/* Gradient mask */}
+              <div class="hidden md:block absolute rounded-xl overflow-hidden w-full h-full object-cover object-left inset-0 bg-linear-to-r from-bs-surface-0/90 via-bs-surface-0/60" />
 
-      // Slides
+              {/* Content */}
+              <figcaption class="z-10 p-6 sm:p-10 md:p-20 max-w-xl flex flex-col gap-6 h-full">
+                {/* Title */}
+                <h2 class="bs-h2" set:html={item.title} />
 
-      <div class="swiper-slide bg-bs-surface-0 border border-bs-surface-3 rounded-xl overflow-hidden !h-auto">
+                {/* Intro */}
+                <div class="bs-body-text text-pretty flex-1" set:html={item.content} />
 
-        <figure class="flex flex-col gap-6 isolate min-h-[50svh] md:min-h-[40rem] h-full">
-
-          {/* BG image */}
-          <img src={ item.image } alt={ item.image_alt } loading="lazy"
-            class="opacity-20 md:opacity-80 rounded-xl grayscale overflow-hidden w-full h-full object-cover object-left absolute inset-0"
-            height="1024" width="768" />
-
-          {/* Gradient mask */}
-          <div
-            class="hidden md:block absolute rounded-xl overflow-hidden w-full h-full object-cover object-left inset-0 bg-gradient-to-r from-bs-surface-0/90 via-bs-surface-0/60">
+                {/* Cta */}
+                <button type="button" class="bs-btn inline-block self-start bs-mt-sm" onclick="demo.showModal()">
+                  {item.cta}
+                </button>
+              </figcaption>
+            </figure>
           </div>
-
-          {/* Content */}
-          <figcaption class="z-10 p-6 sm:p-10 md:p-20 max-w-xl flex flex-col gap-6 h-full">
-
-            {/* Title */}
-            <h2 class="bs-h2" set:html={ item.title } />
-
-            {/* Intro */}
-            <div class="bs-body-text text-pretty flex-1" set:html={ item.content } />
-
-            {/* Cta */}
-            <button type="button" class="bs-btn inline-block self-start bs-mt-sm" onclick="demo.showModal()">
-              { item.cta }
-            </button>
-
-          </figcaption>
-
-        </figure>
-
-      </div>
-
-      )}
-
+        ))
+      }
     </div>
   </div>
-
 </section>
 
 <script>
-import Swiper from "swiper"
-import 'swiper/css'
+  import Swiper from 'swiper'
+  import 'swiper/css'
 
-const prev_btn = document.querySelector('.js-fc-btn-prev')
-const next_btn = document.querySelector('.js-fc-btn-next')
+  const prev_btn = document.querySelector('.js-fc-btn-prev')
+  const next_btn = document.querySelector('.js-fc-btn-next')
 
-const swiper = new Swiper('.js-fc-swiper', {
-  slidesPerView: 1.05,
-  spaceBetween: 8,
-  speed: 500,
-  loop: true,
-  centeredSlides: true,
-  breakpoints: {
-    '640': {
-      slidesPerView: 1.2,
-      spaceBetween: 32,
+  const swiper = new Swiper('.js-fc-swiper', {
+    slidesPerView: 1.05,
+    spaceBetween: 8,
+    speed: 500,
+    loop: true,
+    centeredSlides: true,
+    breakpoints: {
+      '640': {
+        slidesPerView: 1.2,
+        spaceBetween: 32,
+      },
+      '1600': {
+        slidesPerView: 1.4,
+        spaceBetween: 64,
+      },
+      '1900': {
+        slidesPerView: 1.6,
+        spaceBetween: 64,
+      },
     },
-    '1600': {
-      slidesPerView: 1.4,
-      spaceBetween: 64,
-    },
-    '1900': {
-      slidesPerView: 1.6,
-      spaceBetween: 64,
-    },
-  }
+  })
 
-})
+  // Add event listeners to buttons
+  prev_btn.addEventListener('click', () => swiper.slidePrev())
+  next_btn.addEventListener('click', () => swiper.slideNext())
 
-// Add event listeners to buttons
-prev_btn.addEventListener('click', () => swiper.slidePrev())
-next_btn.addEventListener('click', () => swiper.slideNext())
-
-// Trigger swiper
-swiper.init?.()
-
+  // Trigger swiper
+  swiper.init?.()
 </script>
 
 <style>
+  /* Show buttons only when in view */
 
-/* Show buttons only when in view */
-
-@keyframes show-buttons {
-  to { opacity: 1; }
- }
-
-@supports (animation-timeline: view()) {
-  .bs-st-button-wrapper {
-    opacity: 0;
-    animation: show-buttons linear forwards;
-    animation-timeline: view(20% block);
+  @keyframes show-buttons {
+    to {
+      opacity: 1;
+    }
   }
-}
 
+  @supports (animation-timeline: view()) {
+    .bs-st-button-wrapper {
+      opacity: 0;
+      animation: show-buttons linear forwards;
+      animation-timeline: view(20% block);
+    }
+  }
 </style>

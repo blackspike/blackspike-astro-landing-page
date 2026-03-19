@@ -22,13 +22,13 @@ Theme and 3D images are licensed under a [Creative Commons Attribution 4.0 Inter
 
 Created by blackspike [blackspike design](https://www.blackspike.com) – a web design & development team specialising in Astro, Vue, Nuxt & Wordpress websites
 
-## Astro 5 Features
+## Astro 6 Features
 
 - [Image component](https://docs.astro.build/en/guides/images/#display-optimized-images-with-the-image--component) for optimised AVIF images
 - All-[JSX](https://docs.astro.build/en/reference/astro-syntax/) native astro components
 - SVGs imported as [SVG components](https://docs.astro.build/en/guides/images/#svg-components)
 - JSON-powered content (easy to edit UI text or hook up a CMS!)
-- Experimental [Fonts API](https://docs.astro.build/en/reference/experimental-flags/fonts/)
+- ~~Experimental~~ Released! [Fonts API](https://docs.astro.build/en/reference/experimental-flags/fonts/)
 
 ## CSS & HTML Features
 
@@ -80,4 +80,3 @@ All commands are run from the root of the project, from a terminal:
 | `npm run preview`         | Preview your build locally, before deploying     |
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
-
