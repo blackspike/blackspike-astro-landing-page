@@ -12,7 +12,7 @@
   "dependencies": {
     "@tailwindcss/vite": "^4.2.2",
     "astro": "^6.0.6",
-    "swiper": "^12.1.2",
+    "astro-swiper": "^2.3.0",
     "tailwindcss": "^4.2.2"
   }
 }
