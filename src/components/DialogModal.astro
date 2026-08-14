@@ -27,17 +27,17 @@ const { content } = Astro.props
       <!-- Name -->
       <label class="sr-only" for="name">Name</label>
 
-      <input id="name" type="text" class="border-2 rounded-lg bg-bs-surface-0 border-bs-surface-3 form-input px-4 py-3" placeholder="Your name" />
+      <input id="name" type="text" class="border-2 rounded-lg bg-bs-surface-0 border-bs-surface-3 form-input px-4 py-3" placeholder="Your name" autocomplete="name" />
 
       <!-- Company -->
       <label class="sr-only" for="company">Company</label>
 
-      <input id="company" type="text" class="border-2 rounded-lg bg-bs-surface-0 border-bs-surface-3 form-input px-4 py-3" placeholder="Your company" />
+      <input id="company" type="text" class="border-2 rounded-lg bg-bs-surface-0 border-bs-surface-3 form-input px-4 py-3" placeholder="Your company" autocomplete="organization" />
 
       <!-- Email -->
       <label class="sr-only" for="email">Email</label>
 
-      <input id="email" type="email" class="border-2 rounded-lg bg-bs-surface-0 border-bs-surface-3 form-input px-4 py-3" placeholder="Your email" />
+      <input id="email" type="email" class="border-2 rounded-lg bg-bs-surface-0 border-bs-surface-3 form-input px-4 py-3" placeholder="Your email" autocomplete="email" />
 
       <!-- Submit -->
       <button class="bs-btn form-input px-4 py-3">{content.cta}</button>

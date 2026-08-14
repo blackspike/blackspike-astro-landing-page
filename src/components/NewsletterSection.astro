@@ -22,10 +22,10 @@ const { newsletter } = Astro.props
       <!-- Form -->
       <form class="flex gap-4 flex-col" action="">
         <label class="sr-only" for="nl-name">Name</label>
-        <input id="nl-name" class="border-2 rounded-lg text-center bg-bs-surface-0 border-bs-surface-3 form-input px-4 py-3" placeholder="Your name" />
+        <input id="nl-name" class="border-2 rounded-lg text-center bg-bs-surface-0 border-bs-surface-3 form-input px-4 py-3" placeholder="Your name" autocomplete="name" />
 
         <label class="sr-only" for="nl-email">Email</label>
-        <input id="nl-email" type="email" class="border-2 rounded-lg text-center bg-bs-surface-0 border-bs-surface-3 form-input px-4 py-3" placeholder="Your email" />
+        <input id="nl-email" type="email" class="border-2 rounded-lg text-center bg-bs-surface-0 border-bs-surface-3 form-input px-4 py-3" placeholder="Your email" autocomplete="email" />
 
         <input type="submit" value={newsletter.cta} class="bs-btn form-input px-4 py-3" />
       </form>
