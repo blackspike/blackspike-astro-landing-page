@@ -6,7 +6,7 @@ const { settings } = Astro.props
 
 ---
 
-<footer class="@container bs-container my-24 font-semibold text-bs-foreground-dark [&_a]:hover:text-bs-foreground-light [&_a]:transition-color [&_a]:duration-150" id="contact">
+<footer class="@container bs-container my-24 font-semibold text-bs-foreground-dark [&_a]:hover:text-bs-foreground-light [&_a]:transition-colors [&_a]:duration-150" id="contact">
 
   <!-- Wrapper -->
   <div class="bg-bs-surface-2 p-6 md:p-16 rounded-xl grid md:grid-cols-2 gap-8">
@@ -37,7 +37,7 @@ const { settings } = Astro.props
         <!-- Nav -->
         <nav class="flex flex-col">
 
-          { settings.nav.sort((a,b) => a.title.localeCompare(b.title)).map( item =>
+          { settings.nav.map( item =>
 
             <a href={ item.link }>
               { item.title }
@@ -50,7 +50,7 @@ const { settings } = Astro.props
         <!-- Social links -->
         <nav class="flex flex-col">
 
-          { settings.social_links.sort((a,b) => a.title.localeCompare(b.title)).map( item =>
+          { settings.social_links.map( item =>
 
             <a href={ item.link }>
               { item.title }

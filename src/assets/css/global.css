@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+@import "./base.css";
+@import "./typography.css";
+@import "./layout.css";
+@import "./buttons.css";
+
 @theme {
 
   --font-display: var(--font-inter-display), "ui-sans-serif", "system-ui", "sans-serif";
